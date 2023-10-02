@@ -1,0 +1,11 @@
+{
+  "private": false,
+  "workspaces": ["microservices/*"],
+  "repository": "https://github.com/gxguinho/tcc-microservice.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "db:generate": "turbo run db:generate --parallel",
+    "db:migrate": "turbo run db:migrate --parallel"
+  }
+}

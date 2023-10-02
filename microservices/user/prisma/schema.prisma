@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../dist"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String @id @default(uuid())
+  username  String @unique
+  email     String @unique
+  name      String
+  birthDate String
+
+  bio       String?
+  avatarUrl String?
+  bannerUrl String?
+
+  createdAt DateTime @default(now())
+
+  followers FriendShip[] @relation("UserFollowers") //seguidores quem me segue
+  following FriendShip[] @relation("UserFollowing") //seguindo quem eu sigo
+
+  @@map("users")
+}
+
+model FriendShip {
+  id Int @id @default(autoincrement())
+
+  follower   User   @relation(name: "UserFollowers", fields: [followerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  followerId String
+
+  following   User   @relation(name: "UserFollowing", fields: [followingId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  followingId String
+
+  @@map("friendShips")
+}
