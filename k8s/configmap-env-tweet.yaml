@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservice-tweet-env
+data:
+  PORT: "8001"
+  JWT_SECRET: "BFF_SECRET"
+  NODE_ENV: "development"
+  ## DATABASE_URL: "sqlserver://localhost:1433;database=user;User=sa;Password=gxgo1904@;trustServerCertificate=true;"
+  DATABASE_URL: "file:./dev.db"

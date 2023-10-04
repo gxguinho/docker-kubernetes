@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: microservice-user-env
+data:
+  PORT: "8000"
+  JWT_SECRET: "BFF_SECRET"
+  NODE_ENV: "development"
+  ## DATABASE_URL: "sqlserver://localhost:1433;database=user;User=sa;Password=gxgo1904@;trustServerCertificate=true;"
+  DATABASE_URL: "file:./dev.db"

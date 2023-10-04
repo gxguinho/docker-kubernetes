@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "kubernetes://schema/apps/v1@deployment": "file:///c%3A/Users/gabri/OneDrive/%C3%81rea%20de%20Trabalho/apre-gow/microservices/user/k8s/deployment.yaml"
+  }
+}

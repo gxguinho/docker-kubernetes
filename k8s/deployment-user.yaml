@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-user
+  labels:
+    app: microservice-user
+spec:
+  selector:
+    matchLabels:
+      app: microservice-user
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "microservice-user"
+    spec:
+      containers:
+        - name: microservice-user
+          image: "gxguinho/microservice-user:latest"
+          resources:
+            limits:
+              cpu: "0.05"
+              memory: "512Mi"
+          envFrom:
+            - configMapRef:
+                name: microservice-user-env

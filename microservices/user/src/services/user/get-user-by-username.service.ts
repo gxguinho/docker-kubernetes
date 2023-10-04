@@ -5,23 +5,6 @@ export async function getUserByUsernameService(username: string) {
     where: {
       username,
     },
-    include: {
-      _count: {
-        select: {
-          followers: true,
-          following: true,
-        },
-      },
-      followers: {
-        select: {
-          following: {
-            select: {
-              id: true,
-            },
-          },
-        },
-      },
-    },
   });
 
   return user;

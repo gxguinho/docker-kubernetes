@@ -1,17 +1,13 @@
 import fastify from "fastify";
 import { CustomError } from "./utils/custom-error";
-import { userRoutes } from "./routes/user";
+import { tweetRoutes } from "./routes/tweet";
 
 export const App = () => {
-  const app = fastify({
-    logger: {
-      level: "info",
-    },
-  });
+  const app = fastify();
 
-  app.get("/", async () => "USER MICROSERVICE");
+  app.get("/", async () => "TWEETS MICROSERVICE");
 
-  app.register(userRoutes);
+  app.register(tweetRoutes);
 
   app.setErrorHandler((err, req, res) => {
     const customError: CustomError = err;

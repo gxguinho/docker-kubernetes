@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-tweet
+  labels:
+    app: microservice-tweet
+spec:
+  selector:
+    matchLabels:
+      app: microservice-tweet
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "microservice-tweet"
+    spec:
+      containers:
+        - name: microservice-tweet
+          image: "gxguinho/microservice-tweet:latest"
+          resources:
+            limits:
+              cpu: "0.05"
+              memory: "512Mi"
+          envFrom:
+            - configMapRef:
+                name: microservice-tweet-env
