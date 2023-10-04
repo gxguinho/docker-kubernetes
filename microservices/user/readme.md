@@ -27,3 +27,23 @@ kubectl apply -f .\k8s\metrics-server.yaml
 kubectl -n kube-system get deployment/metrics-server
 
 kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://microservice-user-service/gxguinho"
+
+FROM node:18.14.2-alpine
+
+WORKDIR /usr/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run db:generate
+
+EXPOSE 8000
+
+RUN npm run build:dev
+
+WORKDIR /usr/app/dist
+
+CMD ["node", "./server.js"]
